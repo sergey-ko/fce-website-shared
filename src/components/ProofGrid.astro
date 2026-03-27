@@ -1,0 +1,22 @@
+---
+interface Props {
+  headline?: string;
+  points: { title: string; description: string }[];
+}
+
+const { headline = 'Why Trust Us', points } = Astro.props;
+---
+
+<section class="py-24 md:py-32 bg-[var(--bg-secondary)]">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">{headline}</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      {points.map(point => (
+        <div class="p-6 rounded-xl border border-[var(--border)] bg-[var(--bg-primary)]">
+          <h3 class="text-lg font-semibold text-[var(--accent-primary)]">{point.title}</h3>
+          <p class="text-[var(--text-secondary)] mt-2 text-sm leading-relaxed">{point.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

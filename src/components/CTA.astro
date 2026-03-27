@@ -1,0 +1,36 @@
+---
+interface Props {
+  headline: string;
+  subheadline?: string;
+  buttonText: string;
+  buttonHref: string;
+  calendlyUrl?: string;
+}
+
+const { headline, subheadline, buttonText, buttonHref, calendlyUrl } = Astro.props;
+---
+
+<section id="contact" class="py-24 md:py-32">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold">{headline}</h2>
+    {subheadline && (
+      <p class="text-[var(--text-secondary)] mt-4 text-lg">{subheadline}</p>
+    )}
+    <a
+      href={buttonHref}
+      class="inline-block mt-8 px-8 py-3 rounded-lg bg-[var(--accent-primary)] text-[var(--accent-btn-text)] font-semibold text-lg hover:opacity-90 transition-opacity"
+    >
+      {buttonText}
+    </a>
+    {calendlyUrl && (
+      <div class="mt-12">
+        <div
+          class="calendly-inline-widget"
+          data-url={calendlyUrl}
+          style="min-width:320px;height:700px;"
+        ></div>
+        <script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      </div>
+    )}
+  </div>
+</section>

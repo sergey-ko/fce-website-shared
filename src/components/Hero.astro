@@ -1,0 +1,43 @@
+---
+interface Props {
+  badge?: string;
+  headline: string;
+  subheadline: string;
+  primaryCTA: { text: string; href: string };
+  secondaryCTA?: { text: string; href: string };
+}
+
+const { badge, headline, subheadline, primaryCTA, secondaryCTA } = Astro.props;
+---
+
+<section class="min-h-[80vh] flex items-center py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    {badge && (
+      <span class="inline-block bg-[var(--bg-tertiary)] text-[var(--accent-primary)] text-xs font-mono font-medium px-4 py-1.5 rounded-full border border-[var(--border)] mb-8">
+        {badge}
+      </span>
+    )}
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-[var(--text-primary)] leading-tight max-w-4xl mx-auto">
+      {headline}
+    </h1>
+    <p class="text-lg sm:text-xl md:text-2xl text-[var(--text-secondary)] mt-6 max-w-3xl mx-auto leading-relaxed">
+      {subheadline}
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+      <a
+        href={primaryCTA.href}
+        class="px-8 py-3 rounded-lg bg-[var(--accent-primary)] text-[var(--accent-btn-text)] font-semibold text-lg hover:opacity-90 transition-opacity"
+      >
+        {primaryCTA.text}
+      </a>
+      {secondaryCTA && (
+        <a
+          href={secondaryCTA.href}
+          class="px-8 py-3 rounded-lg border border-[var(--border)] text-[var(--text-primary)] font-semibold text-lg hover:border-[var(--border-hover)] transition-colors"
+        >
+          {secondaryCTA.text}
+        </a>
+      )}
+    </div>
+  </div>
+</section>

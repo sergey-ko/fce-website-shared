@@ -1,0 +1,15 @@
+{
+  "name": "@fce/shared",
+  "version": "1.0.0",
+  "description": "Shared design system and components for FCE product websites",
+  "type": "module",
+  "exports": {
+    "./components/*": "./src/components/*",
+    "./layouts/*": "./src/layouts/*",
+    "./styles/*": "./src/styles/*"
+  },
+  "files": ["src/"],
+  "peerDependencies": {
+    "astro": "^5.0.0"
+  }
+}

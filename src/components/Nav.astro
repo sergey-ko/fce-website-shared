@@ -1,0 +1,31 @@
+---
+interface Props {
+  logo: string;
+  links?: { text: string; href: string }[];
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const { logo, links = [], ctaText = 'Book a Call', ctaHref = '#contact' } = Astro.props;
+---
+
+<nav class="fixed top-0 w-full z-50 border-b border-[var(--border)] bg-[var(--bg-primary)]/80 backdrop-blur-xl">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-mono font-bold text-lg text-[var(--accent-primary)]">{logo}</a>
+    <div class="flex items-center gap-6">
+      {links.map(link => (
+        <a href={link.href} class="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hidden md:block">
+          {link.text}
+        </a>
+      ))}
+      <a
+        href={ctaHref}
+        class="text-sm font-medium px-4 py-2 rounded-lg bg-[var(--accent-primary)] text-[var(--accent-btn-text)] hover:opacity-90 transition-opacity"
+      >
+        {ctaText}
+      </a>
+    </div>
+  </div>
+</nav>
+<!-- Spacer for fixed nav -->
+<div class="h-16"></div>

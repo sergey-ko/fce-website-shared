@@ -1,0 +1,41 @@
+---
+interface Props {
+  headline?: string;
+  columns: string[];
+  rows: { label: string; values: string[] }[];
+}
+
+const { headline = 'How We Compare', columns, rows } = Astro.props;
+---
+
+<section class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">{headline}</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr>
+            <th class="text-left p-4 text-sm font-medium text-[var(--text-muted)] border-b border-[var(--border)]"></th>
+            {columns.map((col, i) => (
+              <th class={`text-left p-4 text-sm font-semibold border-b border-[var(--border)] ${i === 0 ? 'text-[var(--accent-primary)]' : 'text-[var(--text-secondary)]'}`}>
+                {col}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(row => (
+            <tr class="border-b border-[var(--border)] hover:bg-[var(--bg-secondary)] transition-colors">
+              <td class="p-4 text-sm font-medium text-[var(--text-primary)]">{row.label}</td>
+              {row.values.map((val, i) => (
+                <td class={`p-4 text-sm ${i === 0 ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}>
+                  {val}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

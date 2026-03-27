@@ -1,0 +1,25 @@
+---
+interface Props {
+  productName: string;
+  companyName?: string;
+  links?: { text: string; href: string }[];
+}
+
+const { productName, companyName = 'FCE Global', links = [] } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--border)] py-12">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-[var(--text-muted)]">
+      &copy; {year} {companyName}. {productName} is a product of {companyName}.
+    </p>
+    <div class="flex gap-6">
+      {links.map(link => (
+        <a href={link.href} class="text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors">
+          {link.text}
+        </a>
+      ))}
+    </div>
+  </div>
+</footer>
