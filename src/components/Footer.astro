@@ -5,18 +5,19 @@ interface Props {
   links?: { text: string; href: string }[];
 }
 
-const { productName, companyName = 'FCE Global', links = [] } = Astro.props;
+const { productName, companyName, links = [] } = Astro.props;
+const displayName = companyName || productName;
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-[var(--border)] py-12">
-  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+<footer class="border-t border-[var(--border)] mt-16 py-16 bg-[var(--bg-secondary)]">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
     <p class="text-sm text-[var(--text-muted)]">
-      &copy; {year} {companyName}. {productName} is a product of {companyName}.
+      &copy; {year} {displayName}.{companyName && companyName !== productName ? ` ${productName} is a product of ${companyName}.` : ''}
     </p>
     <div class="flex gap-6">
       {links.map(link => (
-        <a href={link.href} class="text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors">
+        <a href={link.href} class="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
           {link.text}
         </a>
       ))}
