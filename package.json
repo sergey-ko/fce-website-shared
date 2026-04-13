@@ -1,7 +1,7 @@
 {
   "name": "@fce/shared",
   "version": "1.0.0",
-  "description": "Shared design system and components for FCE product websites",
+  "description": "Shared design system and components for product websites",
   "type": "module",
   "exports": {
     "./components/*": "./src/components/*",

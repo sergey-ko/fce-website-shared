@@ -29,7 +29,7 @@ const { headline = 'How We Compare', columns, rows } = Astro.props;
               <td class="p-4 text-sm font-medium text-[var(--text-primary)]">{row.label}</td>
               {row.values.map((val, i) => (
                 <td class={`p-4 text-sm ${i === 0 ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}>
-                  {val}
+                  <Fragment set:html={val} />
                 </td>
               ))}
             </tr>
